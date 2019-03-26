@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:LoadingSample.Controls"
+             x:Class="LoadingSample.Views.MainPage"
+             Title="{Binding Title}">
+    <Grid Margin="20,50,20,0" RowSpacing="50">
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0"
+               Text="{Binding Strings[SetDisplayName]}"
+               HorizontalOptions="Center"/>
+        
+        <c:LoadingView Grid.Row="2" 
+                      Source="{Binding LoadingTasks}"
+                      Description="{Binding DescriptionTask}"
+                      HorizontalOptions="Center"/>
+        
+        <Button Grid.Row="3"
+                Text="done"
+                Command="{Binding SignUpCommand}"/>
+        
+    </Grid>
+</ContentPage>

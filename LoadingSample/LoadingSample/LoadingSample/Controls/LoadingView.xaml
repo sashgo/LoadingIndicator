@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:t="clr-namespace:LoadingSample.Triggers"
+             x:Class="LoadingSample.Controls.LoadingView"
+             x:Name="This">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Image">
+                <Setter Property="Source" Value="Wait"/>
+                <Style.Triggers>
+                    <DataTrigger TargetType="Image" Binding="{Binding State}" Value="Wait">
+                        <Setter Property="Source" Value="Wait" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Image" Binding="{Binding State}" Value="Run">
+                        <Setter Property="Source" Value="Run" />
+                        <DataTrigger.EnterActions>
+                            <t:RotateImageTrigger
+                            />
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Image" Binding="{Binding State}" Value="Done">
+                        <Setter Property="Source" Value="Done" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>        
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout BindingContext="{x:Reference Name=This}">
+            <FlexLayout x:Name="_source"
+                        Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        WidthRequest="150"
+                        HorizontalOptions="Center">
+            </FlexLayout>
+            <Label Text="{Binding Description}" 
+                   HorizontalOptions="Center"
+                   TextColor="Black"
+                   />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
